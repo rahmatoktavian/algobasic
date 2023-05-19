@@ -9,18 +9,27 @@
 			// $list =  ["Audi", "BMW", "Mercedes", "Volvo"];
 
 			// API
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, "https://api.rajaongkir.com/starter/province?key=8d923ad9ac9eb0ff0349a6885122d1f3");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-			$json = curl_exec($ch); 
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
+				CURLOPT_CUSTOMREQUEST => "GET",
+				CURLOPT_HTTPHEADER => array(
+					"key: 8d923ad9ac9eb0ff0349a6885122d1f3"
+				),
+				CURLOPT_RETURNTRANSFER => true,
+			));
+			$json = curl_exec($curl);
+			curl_close($curl);
+
+			//convert json response into php array
 			$data = json_decode($json, TRUE);
 			$list = $data["rajaongkir"]["results"];
-			curl_close($ch);  
 			
 			// display raw data
-			// print_r($data);
+			// print_r($list);
 		?>
-		<br />
+		
+		<!-- display data become dropdown -->
 		Province
 		<select>
 			<?php foreach($list as $data):?>

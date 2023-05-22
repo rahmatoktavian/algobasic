@@ -34,7 +34,7 @@
 		
 		<ul>
 			<?php foreach($costList as $cost):?>
-			<li><?php echo $cost["description"];?></li>
+			<li><?php echo $cost["description"];?> : Rp</li>
 			<?php endforeach;?>
 		</ul>
 

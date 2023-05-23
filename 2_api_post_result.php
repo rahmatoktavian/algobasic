@@ -18,7 +18,10 @@
 					"key: 8d923ad9ac9eb0ff0349a6885122d1f3",
 					"content-type: application/x-www-form-urlencoded"
 				),
+				//put data origin, destination & courier in this line
 				CURLOPT_POSTFIELDS => "origin=".$origin_city."&destination=".$destination_city."&weight=100&courier=jne",
+				//note : change jne into tiki / pos to display another courier cost
+
 				CURLOPT_RETURNTRANSFER => true,
 			));
 			$json = curl_exec($curl);
@@ -28,13 +31,14 @@
 			$data = json_decode($json, TRUE);
 			$costList = $data["rajaongkir"]["results"][0]["costs"];
 			
-			// display raw data
+			// display json data
 			// print_r($costList);
+			// die;
 		?>
 		
 		<ul>
 			<?php foreach($costList as $cost):?>
-			<li><?php echo $cost["description"];?> : Rp</li>
+			<li><?php echo $cost["service"];?> (<?php echo $cost["description"];?>) : Rp. </li>
 			<?php endforeach;?>
 		</ul>
 

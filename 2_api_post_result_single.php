@@ -6,8 +6,8 @@
 	<body>
 		<?php
 			// get data from previous screen
-			$origin_city = 151;//$_POST["origin_city"];
-			$destination_city = 114;//$_POST["destination_city"];
+			$origin_city = $_POST["origin_city"];
+			$destination_city = $_POST["destination_city"];
 
 			// API POST (display delivery cost)
 			$curl = curl_init();
@@ -38,7 +38,7 @@
 		
 		<ul>
 			<?php foreach($costList as $cost):?>
-			<li><?php echo $cost["service"];?> (<?php echo $cost["description"];?>) : Rp. </li>
+			<li><?php echo $cost["service"];?> (<?php echo $cost["description"];?>) : Rp. <?php echo number_format($cost["cost"][0]["value"]);?> (Estimation : <?php echo $cost["cost"][0]["etd"];?> Days)</li>
 			<?php endforeach;?>
 		</ul>
 

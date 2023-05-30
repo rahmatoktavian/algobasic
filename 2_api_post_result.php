@@ -98,20 +98,35 @@
 									'service' => 'POS - '.$cost['service'],
 									'description' => $cost['description'],
 									'cost' => $cost['cost'][0]['value'],
-									'etd' => str_replace('HARI', '', $cost['cost'][0]['etd'])
+									// 'etd' => str_replace('HARI', '', $cost['cost'][0]['etd'])
+									'etd' => $cost['cost'][0]['etd'],
 								);
 			}
 
 			// display json data
-			print_r($costListAll);
-			die;
+			// print_r($costListAll);
+			// die;
 		?>
 		
-		<ul>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Service</th>
+					<th>Description</th>
+					<th>Cost</th>
+					<th>Estimated Day</th>
+				</tr>
+			</thead>
+			<tbody>
 			<?php foreach($costListAll as $cost):?>
-			<li><?php echo $cost["service"];?> : Rp. <?php echo number_format($cost["cost"]);?> (<?php echo $cost["etd"];?> Days)</li>
+			<tr>
+				<td><?php echo $cost["service"];?></td>
+				<td><?php echo $cost["description"];?></td>
+				<td>Rp. <?php echo number_format($cost["cost"]);?></td>
+				<td><?php echo $cost["etd"];?></tr></td>
 			<?php endforeach;?>
-		</ul>
+			</tbody>
+		</table>
 
 	</body>
 </html>

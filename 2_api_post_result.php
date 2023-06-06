@@ -92,7 +92,7 @@
 			$data = json_decode($json, TRUE);
 			$costListPOS = $data["rajaongkir"]["results"][0]["costs"];
 
-			//insert JNE cost in cost list All
+			//insert POS cost in cost list All
 			foreach($costListPOS as $cost) {
 				$costListAll[] = array(
 									'service' => 'POS - '.$cost['service'],
@@ -104,8 +104,8 @@
 			}
 
 			// display json data
-			// print_r($costListAll);
-			// die;
+			print_r($costListAll);
+			die;
 		?>
 		
 		<table border="1">

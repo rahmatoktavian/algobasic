@@ -12,15 +12,22 @@
 				['name'=>'Barcelona', 'league'=>'La Liga'],
 				['name'=>'Juventus', 'league'=>'Serie A'],
 				['name'=>'AC Milan', 'league'=>'Serie A'],
+				['name'=>'Liverpool', 'league'=>'EPL'],
 			];
 
+			// new variable for container
 			$grouped_data = [];
+
+			//looping original data
 			foreach($original_data as $index=>$item) {
 				$name = $item['name'];
 				$league = $item['league'];
 
+				// second, third & next club 
 				if(!empty($grouped_data[$league])) {
 					$grouped_data[$league] += 1;
+
+				// first club
 				} else {
 					$grouped_data[$league] = 1;
 				}
@@ -32,14 +39,14 @@
 			<thead>
 				<tr>
 					<th>League</th>
-					<th>Total Club</th>
+					<th>Club</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php foreach($original_data as $original):?>
 			<tr>
-				<td><?php echo $original['name'];?></td>
 				<td><?php echo $original['league'];?></td>
+				<td><?php echo $original['name'];?></td>
 			<?php endforeach;?>
 			</tbody>
 		</table>
@@ -106,21 +113,25 @@
 							// original data
 							// {
 							// 	name: 'Chrome',
-							// 	y: 70,
-							// }, {
+							// 	y: 60,
+							// }, 
+							// {
 							// 	name: 'Edge',
 							// 	y: 50
-							// },  {
+							// },  
+							// {
 							// 	name: 'Firefox',
 							// 	y: 40
-							// }
+							// },
 
 							<?php foreach($grouped_data as $league=>$club):?>
-								{
-									name: '<?php echo $league;?>',
-									y: <?php echo $club;?>
-								},
+							{
+								name: '<?php echo $league;?>',
+								y: <?php echo $club;?>
+							},
 							<?php endforeach;?>
+
+							
 						]
 				}]
 			});
